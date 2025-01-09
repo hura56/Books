@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using Books.Models;
 using CommunityToolkit.Mvvm.Input;
 using System.Linq.Expressions;
+using Books.ViewModels;
+using Books.Views;
 
 namespace Books.ViewModels;
 
@@ -50,5 +52,12 @@ public partial class SearchViewModel : BaseViewModel
         {
             IsBusy = false; 
         }
+    }
+
+    [RelayCommand]
+    public async Task ShowBookDetails(Book book)
+    {
+        //await Application.Current!.MainPage!.DisplayAlert("Klik", $"Kliknales w ksiazke", "OK");
+        await Shell.Current.Navigation.PushAsync(new BookDetailsView(new BookDetailsViewModel(book)));
     }
 }

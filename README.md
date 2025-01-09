@@ -1,5 +1,5 @@
 # Setup
-To test App add .env file to main directory and add api key:
+To test App add .env file to main directory and add api key from console.cloud.google.com:
 
 API_KEY="your_api_key_here"
 
