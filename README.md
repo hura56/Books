@@ -1,5 +1,6 @@
 # Setup
 To test App add .env file to main directory and add api key:
+
 API_KEY="your_api_key_here"
 
 
