@@ -18,4 +18,9 @@
         ContentTemplate="{DataTemplate local:SearchView}"
         Route="SearchView" />
 
+    <ShellContent 
+        Title="ReadBooks"
+        ContentTemplate="{DataTemplate local:ReadBooksView}"
+        Route="ReadBooksView"/>
+
 </Shell>

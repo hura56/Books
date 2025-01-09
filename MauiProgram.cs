@@ -28,11 +28,19 @@ namespace Books
                 client.BaseAddress = new Uri("https://www.googleapis.com/books/v1/");
             });
 
+            builder.Services.AddSingleton<DbService>();
+
             builder.Services.AddTransient<MainView>();
             builder.Services.AddTransient<MainViewModel>();
 
             builder.Services.AddTransient<SearchView>();
             builder.Services.AddTransient<SearchViewModel>();
+
+            builder.Services.AddTransient<BookDetailsView>();
+            builder.Services.AddTransient<BookDetailsViewModel>();
+
+            builder.Services.AddTransient<ReadBooksView>();
+            builder.Services.AddTransient<ReadBooksViewModel>();
 
             return builder.Build();
         }

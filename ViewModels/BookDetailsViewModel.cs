@@ -6,22 +6,40 @@ using System.Text;
 using System.Threading.Tasks;
 using Books.Models;
 using CommunityToolkit.Mvvm.Input;
+using Books.Services;
 
 namespace Books.ViewModels;
 
+[QueryProperty(nameof(Book), "Book")]
 public partial class BookDetailsViewModel : BaseViewModel
 {
-    [ObservableProperty] private Book book;
+    private readonly DbService _dbService;
 
-    public BookDetailsViewModel(Book book)
+    private Book _book;
+    public Book Book
     {
-        Book = book;
+        get => _book;
+        set => SetProperty(ref _book, value);
+    }
+
+    public BookDetailsViewModel(DbService dbService)
+    {
+        _dbService = dbService;
     }
 
     [RelayCommand]
-    public async Task AddBookToRead()
+    public async Task AddBookToRead(Book book)
     {
-        await Application.Current!.MainPage!.DisplayAlert("Placeholder", $"Tutaj bedzie logika dodania ksiazki do przeczytanych", "OK");
+        try
+        {
+            var dbBook = BooksService.ToDbBook(book);
+            await _dbService.SaveBookAsync(dbBook);
+            await Application.Current!.MainPage!.DisplayAlert("Sukces", $"Dodano książke: {book.Title} do listy przeczytanych", "OK");
+        }
+        catch (Exception ex)
+        {
+            await Application.Current!.MainPage!.DisplayAlert("Błąd", $"Wystąpił problem: {ex.Message}", "OK");
+        }
     }
 
     [RelayCommand]

@@ -57,7 +57,18 @@ public partial class SearchViewModel : BaseViewModel
     [RelayCommand]
     public async Task ShowBookDetails(Book book)
     {
-        //await Application.Current!.MainPage!.DisplayAlert("Klik", $"Kliknales w ksiazke", "OK");
-        await Shell.Current.Navigation.PushAsync(new BookDetailsView(new BookDetailsViewModel(book)));
+        var navigationParameter = new Dictionary<string, object>
+    {
+        { "Book", book }
+    };
+        try
+        {
+            await Shell.Current.GoToAsync(nameof(BookDetailsView), true, navigationParameter);
+        }
+        catch (Exception ex)
+        {
+            await Application.Current.MainPage.DisplayAlert("Błąd", $"Wystąpił błąd podczas nawigacji: {ex.Message}", "OK");
+        }
     }
+
 }

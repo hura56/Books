@@ -6,11 +6,44 @@
              xmlns:models="clr-namespace:Books.Models"
              x:DataType="viewModel:BookDetailsViewModel"
              Title="BookDetailsView">
-    <VerticalStackLayout>
-        <Label Text="Strona detali książki"
-               VerticalOptions="Center"
-               HorizontalOptions="Center" />
-        <Button Text="Wróć"
-                Command="{Binding BackCommand}" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Padding="20"
+                             Spacing="15">
+            <!-- Miniatura okładki -->
+            <Image Source="{Binding Book.Thumbnail}"
+                   WidthRequest="150"
+                   HeightRequest="200"
+                   HorizontalOptions="Center" />
+            <Button Text="Dodaj do przeczytanych"
+                    Command="{Binding AddBookToReadCommand}"
+                    CommandParameter="{Binding Book}" />
+
+            <!-- Tytuł książki -->
+            <Label Text="{Binding Book.Title}"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <!-- Autorzy -->
+            <Label Text="Autorzy:"
+                   FontAttributes="Bold" />
+            <Label Text="{Binding Book.Authors}" />
+
+            <!-- Data publikacji -->
+            <Label Text="Data publikacji:"
+                   FontAttributes="Bold" />
+            <Label Text="{Binding Book.PublishedDate}" />
+
+            <!-- Opis książki -->
+            <Label Text="Opis:"
+                   FontAttributes="Bold" />
+            <Label Text="{Binding Book.Description}"
+                   LineBreakMode="WordWrap" />
+
+            <!-- Przycisk wróć -->
+            <Button Text="Wróć"
+                    Command="{Binding BackCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+
 </ContentPage>

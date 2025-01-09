@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using Books.Models;
 using DotNetEnv;
+using Books.DbModels;
 
 namespace Books.Services;
 
@@ -56,4 +57,14 @@ public class BooksService
 
         return books;
     }
+
+    public static DbBook ToDbBook(Book book) => new DbBook
+    {
+        GoogleId = book.Id,
+        Title = book.Title,
+        Authors = book.Authors,
+        Description = book.Description,
+        PublishedDate = book.PublishedDate,
+        Thumbnail = book.Thumbnail,
+    };
 }
