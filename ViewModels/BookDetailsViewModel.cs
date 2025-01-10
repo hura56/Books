@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Books.Models;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Maui.Views;
 using Books.Services;
+using Books.Popups;
 
 namespace Books.ViewModels;
 
@@ -46,5 +48,11 @@ public partial class BookDetailsViewModel : BaseViewModel
     public async Task Back()
     {
         await Shell.Current.Navigation.PopAsync();
+    }
+
+    [RelayCommand]
+    public async Task ShowThumbnail()
+    {
+        Application.Current!.MainPage!.ShowPopup(new ThumbnailPopup(Book.Thumbnail));
     }
 }

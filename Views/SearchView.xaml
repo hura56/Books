@@ -5,11 +5,21 @@
              xmlns:viewModel="clr-namespace:Books.ViewModels"
              xmlns:models="clr-namespace:Books.Models"
              x:DataType="viewModel:SearchViewModel"
-             Title="SearchView">
+             Title="SearchView"
+             BackgroundColor="#3A4E48">
     <ContentPage.Content>
         <StackLayout Padding="10">
+            <Button Text="Wróć"
+                    BackgroundColor="#BEB0A7"
+                    TextColor="#040303"
+                    BorderColor="#040303"
+                    BorderWidth="2"
+                    WidthRequest="100"
+                    HorizontalOptions="Start"
+                    Command="{Binding BackCommand}"/>
             <SearchBar Placeholder="Wpisz tytuł lub autora"
                        Text="{Binding SearchQuery}"
+                       TextColor="#040303"
                        SearchCommand="{Binding SearchBooksCommand}" />
 
             <ActivityIndicator IsRunning="{Binding IsBusy}"
@@ -19,8 +29,8 @@
                             VerticalOptions="FillAndExpand">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Book">
-                        <Frame BackgroundColor="YellowGreen"
-                               BorderColor="Black"
+                        <Frame BackgroundColor="#8B9D83"
+                               BorderColor="#040303"
                                Padding="10"
                                Margin="5">
                             <Frame.GestureRecognizers>
@@ -32,7 +42,7 @@
                                          Padding="5">
                                 <Label Text="{Binding Title}"
                                        FontSize="Large"
-                                       TextColor="Black"
+                                       TextColor="#040303"
                                        FontAttributes="Bold" />
                                 <StackLayout Orientation="Horizontal">
                                     <Image Source="{Binding Thumbnail}"
@@ -41,9 +51,11 @@
                                         <StackLayout Padding="20">
 
                                         <Label Text="{Binding Authors}"
-                                               FontSize="Medium" />
+                                               FontSize="Medium"
+                                               TextColor="#040303" />
                                         <Label Text="{Binding PublishedDate}"
-                                               FontSize="Small" />
+                                               FontSize="Small"
+                                               TextColor="#040303" />
                                     </StackLayout>
 
                                 </StackLayout>

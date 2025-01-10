@@ -5,37 +5,63 @@
              xmlns:viewModel="clr-namespace:Books.ViewModels"
              xmlns:models="clr-namespace:Books.DbModels"
              x:DataType="viewModel:ReadBooksViewModel"
-             Title="ReadBooksView">
+             Title="ReadBooksView"
+             BackgroundColor="#3A4E48">
     <StackLayout>
+        <Button Text="Wróć"
+                BackgroundColor="#BEB0A7"
+                TextColor="#040303"
+                BorderColor="#040303"
+                BorderWidth="2"
+                WidthRequest="100"
+                HorizontalOptions="Start"
+                Command="{Binding BackCommand}" />
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Przeczytane książki: "
+                   FontSize="Large"
+                   Padding="10" />
+            <Label Text="{Binding ReadBooks.Count}"
+                   FontSize="Large"
+                   Padding="10" />
+        </StackLayout>
         <CollectionView ItemsSource="{Binding ReadBooks}"
                         VerticalOptions="FillAndExpand">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:DbBook">
-                    
-                    <Frame>
+
+                    <Frame BackgroundColor="#8B9D83"
+                           BorderColor="#040303"
+                           Padding="10"
+                           Margin="5">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:ReadBooksViewModel}}, Path=ShowReadBookDetailsCommand}"
+                                                  CommandParameter="{Binding .}"
+                                                  NumberOfTapsRequired="1" />
+
+                            <SwipeGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:ReadBooksViewModel}}, Path=RemoveBookCommand}"
                                                     CommandParameter="{Binding .}"
-                                                    NumberOfTapsRequired="1"
-                                                    />
+                                                    Direction="Left, Right" />
                         </Frame.GestureRecognizers>
                         <StackLayout Orientation="Vertical"
                                      Padding="5">
                             <Label Text="{Binding Title}"
                                    FontSize="Large"
-                                   TextColor="Black"
+                                   TextColor="#040303"
                                    FontAttributes="Bold" />
                             <StackLayout Orientation="Horizontal">
-                            <Image Source="{Binding Thumbnail}"
-                                   WidthRequest="75"
-                                   HeightRequest="100" />
-                            <StackLayout Padding="20">
+                                <Image Source="{Binding Thumbnail}"
+                                       WidthRequest="75"
+                                       HeightRequest="100" />
+                                <StackLayout Padding="20">
 
-                                <Label Text="{Binding Authors}"
-                                       FontSize="Medium" />
-                                <Label Text="{Binding PublishedDate}"
-                                       FontSize="Small" />
-                            </StackLayout>
+                                    <Label Text="{Binding Authors}"
+                                           FontSize="Medium"
+                                           TextColor="#040303" />
+                                    <Label Text="{Binding PublishedDate}"
+                                           FontSize="Small"
+                                           TextColor="#040303" />
+                                </StackLayout>
 
                             </StackLayout>
                         </StackLayout>

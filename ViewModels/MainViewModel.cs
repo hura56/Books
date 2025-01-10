@@ -14,5 +14,16 @@ public partial class MainViewModel : BaseViewModel
     {
 
     }
-        
+    
+    [RelayCommand]
+    public async Task GoToSearch()
+    {
+        await Shell.Current.GoToAsync("//SearchView");
+    }
+
+    [RelayCommand]
+    public async Task GoToReadBooks()
+    {
+        await Shell.Current.GoToAsync("//ReadBooksView");
+    }
 }

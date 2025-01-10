@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Books.Views.ReadBookDetailsView"
+             xmlns:viewModel="clr-namespace:Books.ViewModels"
+             xmlns:models="clr-namespace:Books.DbModels"
+             x:DataType="viewModel:ReadBookDetailsViewModel"
+             Title="ReadBookDetailsView"
+             BackgroundColor="#8B9D83">
+    <ScrollView>
+        <VerticalStackLayout Padding="20"
+                             Spacing="15">
+
+            <Image Source="{Binding DbBook.Thumbnail}"
+                   WidthRequest="150"
+                   HeightRequest="200"
+                   HorizontalOptions="Center">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ShowThumbnailCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+
+            <Label Text="{Binding DbBook.Title}"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="#040303"/>
+
+            <Label Text="Autorzy:"
+                   FontAttributes="Bold"
+                   TextColor="#040303" />
+            <Label Text="{Binding DbBook.Authors}"
+                   TextColor="#040303" />
+
+            <Label Text="Data publikacji:"
+                   FontAttributes="Bold"
+                   TextColor="#040303" />
+            <Label Text="{Binding DbBook.PublishedDate}"
+                   TextColor="#040303" />
+
+            <Label Text="Opis:"
+                   FontAttributes="Bold"
+                   TextColor="#040303" />
+            <Label Text="{Binding DbBook.Description}"
+                   LineBreakMode="WordWrap"
+                   TextColor="#040303" />
+
+            <Button Text="Usuń książke z przeczytanych"
+                    Command="{Binding RemoveBookCommand}"
+                    CommandParameter="{Binding DbBook}"
+                    BackgroundColor="#AD343E"
+                    TextColor="#040303"
+                    BorderColor="#040303"
+                    BorderWidth="2" />
+
+            <Button Text="Wróć"
+                    Command="{Binding BackCommand}"
+                    BackgroundColor="#3A4E48"
+                    TextColor="#040303"
+                    BorderColor="#040303"
+                    BorderWidth="2" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

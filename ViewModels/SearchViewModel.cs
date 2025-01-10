@@ -71,4 +71,9 @@ public partial class SearchViewModel : BaseViewModel
         }
     }
 
+    [RelayCommand]
+    public async Task Back()
+    {
+        await Shell.Current.GoToAsync("//MainView");
+    }
 }

@@ -10,6 +10,7 @@ namespace Books
             InitializeComponent();
 
             Routing.RegisterRoute(nameof(BookDetailsView), typeof(BookDetailsView));
+            Routing.RegisterRoute(nameof(ReadBookDetailsView), typeof(ReadBookDetailsView));
         }
     }
 }

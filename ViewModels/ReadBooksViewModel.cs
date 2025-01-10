@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using Books.Services;
 using Books.DbModels;
+using Books.Views;
 
 namespace Books.ViewModels;
 
@@ -43,7 +44,7 @@ public partial class ReadBooksViewModel : BaseViewModel
         }
         catch (Exception ex)
         {
-            await Application.Current.MainPage.DisplayAlert("Błąd", $"Wystąpił problem: {ex.Message}", "OK");
+            await Application.Current!.MainPage!.DisplayAlert("Błąd", $"Wystąpił problem: {ex.Message}", "OK");
         }
         finally
         {
@@ -54,21 +55,45 @@ public partial class ReadBooksViewModel : BaseViewModel
     [RelayCommand]
     public async Task RemoveBook(DbBook book)
     {
-        try
+        bool result = await Application.Current!.MainPage!.DisplayAlert("Potwierdzenie",
+            $"Czy na pewno chcesz usunąć: {book.Title} z listy przeczytanych książek?",
+            "Tak",
+            "Nie"
+            );
+        if (result)
         {
-            await _dbService.DeleteBookAsync(book);
-            await Application.Current!.MainPage!.DisplayAlert("Sukces", $"Usunięto książkę: {book.Title} z listy przeczytanych", "OK");
-        }
-        catch (Exception ex)
-        {
-            await Application.Current!.MainPage!.DisplayAlert("Błąd", $"Wystąpił problem: {ex.Message}", "OK");
+            try
+            {
+                await _dbService.DeleteBookAsync(book);
+                LoadReadBooks();
+            }
+            catch (Exception ex)
+            {
+                await Application.Current!.MainPage!.DisplayAlert("Błąd", $"Wystąpił problem: {ex.Message}", "OK");
+            }
         }
     }
 
     [RelayCommand]
     public async Task ShowReadBookDetails(DbBook book)
     {
-        // logika wyswietlania szczegolow przeczytanej ksiazki, dodac nowy ViewModel i View dla przeczytanej ksiazki
-        await Application.Current!.MainPage!.DisplayAlert("Sukces", $"Wybrałeś: {book.Title} z listy przeczytanych", "OK");
+        var navigationParameter = new Dictionary<string, object>
+    {
+        { "DbBook", book }
+    };
+        try
+        {
+            await Shell.Current.GoToAsync(nameof(ReadBookDetailsView), true, navigationParameter);
+        }
+        catch (Exception ex)
+        {
+            await Application.Current.MainPage.DisplayAlert("Błąd", $"Wystąpił błąd podczas nawigacji: {ex.Message}", "OK");
+        }
+    }
+
+    [RelayCommand]
+    public async Task Back()
+    {
+        await Shell.Current.GoToAsync("//MainView");
     }
 }

@@ -42,6 +42,9 @@ namespace Books
             builder.Services.AddTransient<ReadBooksView>();
             builder.Services.AddTransient<ReadBooksViewModel>();
 
+            builder.Services.AddTransient<ReadBookDetailsView>();
+            builder.Services.AddTransient<ReadBookDetailsViewModel>();
+
             return builder.Build();
         }
     }

@@ -4,11 +4,44 @@
              x:Class="Books.Views.MainView"
              xmlns:viewModel="clr-namespace:Books.ViewModels"
              x:DataType="viewModel:MainViewModel"
-             Title="MainView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="MainView"
+             BackgroundColor="#8B9D83">
+    <VerticalStackLayout Padding="20"
+                         Spacing="30"
+                         VerticalOptions="Center">
+
+        <!-- Tytuł ekranu -->
+        <Label Text="Witaj w MyReads!"
+               FontSize="24"
+               FontAttributes="Bold"
+               TextColor="#040303"
+               HorizontalOptions="Center" />
+
+        <!-- Podtytuł / Opis -->
+        <Label Text="Twoja osobista biblioteka w kieszeni – zarządzaj książkami z łatwością!"
+               FontSize="16"
+               TextColor="#040303"
+               HorizontalOptions="Center"
+               HorizontalTextAlignment="Center" />
+
+        <!-- Przycisk do wyszukiwania książek -->
+        <Button Text="Szukaj nowych książek"
+                BackgroundColor="#6A7B76"
+                TextColor="#040303"
+                BorderColor="#040303"
+                BorderWidth="2"
+                CornerRadius="10"
+                HeightRequest="50" 
+                Command="{Binding GoToSearchCommand}"/>
+
+        <!-- Przycisk do przejścia na listę przeczytanych książek -->
+        <Button Text="Przeczytane książki"
+                BackgroundColor="#6A7B76"
+                TextColor="#040303"
+                BorderColor="#040303"
+                BorderWidth="2"
+                CornerRadius="10"
+                HeightRequest="50" 
+                Command="{Binding GoToReadBooksCommand}"/>
     </VerticalStackLayout>
 </ContentPage>
