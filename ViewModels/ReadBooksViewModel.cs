@@ -50,4 +50,25 @@ public partial class ReadBooksViewModel : BaseViewModel
             IsBusy = false;
         }
     }
+
+    [RelayCommand]
+    public async Task RemoveBook(DbBook book)
+    {
+        try
+        {
+            await _dbService.DeleteBookAsync(book);
+            await Application.Current!.MainPage!.DisplayAlert("Sukces", $"Usunięto książkę: {book.Title} z listy przeczytanych", "OK");
+        }
+        catch (Exception ex)
+        {
+            await Application.Current!.MainPage!.DisplayAlert("Błąd", $"Wystąpił problem: {ex.Message}", "OK");
+        }
+    }
+
+    [RelayCommand]
+    public async Task ShowReadBookDetails(DbBook book)
+    {
+        // logika wyswietlania szczegolow przeczytanej ksiazki, dodac nowy ViewModel i View dla przeczytanej ksiazki
+        await Application.Current!.MainPage!.DisplayAlert("Sukces", $"Wybrałeś: {book.Title} z listy przeczytanych", "OK");
+    }
 }

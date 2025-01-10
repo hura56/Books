@@ -11,7 +11,14 @@
                         VerticalOptions="FillAndExpand">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:DbBook">
+                    
                     <Frame>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:ReadBooksViewModel}}, Path=ShowReadBookDetailsCommand}"
+                                                    CommandParameter="{Binding .}"
+                                                    NumberOfTapsRequired="1"
+                                                    />
+                        </Frame.GestureRecognizers>
                         <StackLayout Orientation="Vertical"
                                      Padding="5">
                             <Label Text="{Binding Title}"
@@ -19,16 +26,16 @@
                                    TextColor="Black"
                                    FontAttributes="Bold" />
                             <StackLayout Orientation="Horizontal">
-                                <Image Source="{Binding Thumbnail}"
-                                       WidthRequest="75"
-                                       HeightRequest="100" />
-                                <StackLayout Padding="20">
+                            <Image Source="{Binding Thumbnail}"
+                                   WidthRequest="75"
+                                   HeightRequest="100" />
+                            <StackLayout Padding="20">
 
-                                    <Label Text="{Binding Authors}"
-                                           FontSize="Medium" />
-                                    <Label Text="{Binding PublishedDate}"
-                                           FontSize="Small" />
-                                </StackLayout>
+                                <Label Text="{Binding Authors}"
+                                       FontSize="Medium" />
+                                <Label Text="{Binding PublishedDate}"
+                                       FontSize="Small" />
+                            </StackLayout>
 
                             </StackLayout>
                         </StackLayout>
