@@ -6,10 +6,19 @@
              xmlns:models="clr-namespace:Books.DbModels"
              x:DataType="viewModel:ReadBookDetailsViewModel"
              Title="ReadBookDetailsView"
-             BackgroundColor="#8B9D83">
+             BackgroundColor="#708090">
     <ScrollView>
         <VerticalStackLayout Padding="20"
                              Spacing="15">
+            <Image Source="back.png"
+                   Aspect="AspectFill"
+                   WidthRequest="50"
+                   HeightRequest="50"
+                   HorizontalOptions="Start">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
 
             <Image Source="{Binding DbBook.Thumbnail}"
                    WidthRequest="150"
@@ -24,7 +33,7 @@
                    FontSize="Large"
                    FontAttributes="Bold"
                    HorizontalOptions="Center"
-                   TextColor="#040303"/>
+                   TextColor="#040303" />
 
             <Label Text="Autorzy:"
                    FontAttributes="Bold"
@@ -45,20 +54,20 @@
                    LineBreakMode="WordWrap"
                    TextColor="#040303" />
 
-            <Button Text="Usuń książke z przeczytanych"
-                    Command="{Binding RemoveBookCommand}"
-                    CommandParameter="{Binding DbBook}"
-                    BackgroundColor="#AD343E"
-                    TextColor="#040303"
-                    BorderColor="#040303"
-                    BorderWidth="2" />
-
-            <Button Text="Wróć"
-                    Command="{Binding BackCommand}"
-                    BackgroundColor="#3A4E48"
-                    TextColor="#040303"
-                    BorderColor="#040303"
-                    BorderWidth="2" />
+            <Frame WidthRequest="50"
+                   HeightRequest="50"
+                   BorderColor="#000000"
+                   BackgroundColor="#FF2C2C">
+                <Image Source="delete.png"
+                       Aspect="AspectFill"
+                       WidthRequest="40"
+                       HeightRequest="40"
+                       HorizontalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RemoveBookCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
         </VerticalStackLayout>
     </ScrollView>
 

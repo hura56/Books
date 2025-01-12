@@ -11,6 +11,7 @@ using CommunityToolkit.Mvvm.Input;
 using System.Linq.Expressions;
 using Books.ViewModels;
 using Books.Views;
+using Books.DbModels;
 
 namespace Books.ViewModels;
 
@@ -46,7 +47,7 @@ public partial class SearchViewModel : BaseViewModel
         }
         catch (Exception ex)
         {
-            await Application.Current!.MainPage!.DisplayAlert("Error", $"Nieoczekiwany błąd: {ex.Message}", "OK");
+            await Application.Current!.MainPage!.DisplayAlert("Błąd", $"Nieoczekiwany błąd: {ex.Message}", "OK");
         }
         finally
         {
@@ -67,13 +68,7 @@ public partial class SearchViewModel : BaseViewModel
         }
         catch (Exception ex)
         {
-            await Application.Current.MainPage.DisplayAlert("Błąd", $"Wystąpił błąd podczas nawigacji: {ex.Message}", "OK");
+            await Application.Current!.MainPage!.DisplayAlert("Błąd", $"Wystąpił błąd podczas nawigacji: {ex.Message}", "OK");
         }
-    }
-
-    [RelayCommand]
-    public async Task Back()
-    {
-        await Shell.Current.GoToAsync("//MainView");
     }
 }

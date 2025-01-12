@@ -90,10 +90,4 @@ public partial class ReadBooksViewModel : BaseViewModel
             await Application.Current.MainPage.DisplayAlert("Błąd", $"Wystąpił błąd podczas nawigacji: {ex.Message}", "OK");
         }
     }
-
-    [RelayCommand]
-    public async Task Back()
-    {
-        await Shell.Current.GoToAsync("//MainView");
-    }
 }

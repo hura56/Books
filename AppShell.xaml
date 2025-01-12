@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Shell
-    x:Class="Books.AppShell"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Books.Views"
-    Shell.FlyoutBehavior="Flyout"
-    Shell.NavBarIsVisible="False"
-    Title="Books">
+<Shell x:Class="Books.AppShell"
+       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:Books.Views"
+       Shell.FlyoutBehavior="Disabled"
+       Shell.NavBarIsVisible="False"
+       Title="Books"
+       Shell.TabBarUnselectedColor="#F7F0F0"
+       Shell.TabBarBackgroundColor="#808080"
+       Shell.TabBarTitleColor="#2F4F4F"
+       Shell.TabBarIsVisible="False"
+       Shell.TabBarForegroundColor="#2F4F4F">
 
-    <ShellContent
-        Title="Main"
-        ContentTemplate="{DataTemplate local:MainView}"
-        Route="MainView" />
+    <TabBar>
+        <ShellContent Title="Szukaj"
+                      Icon="search.png"
+                      ContentTemplate="{DataTemplate local:SearchView}"
+                      Route="SearchView" 
+                      Shell.TabBarIsVisible="True" />
 
-    <ShellContent
-        Title="Search"
-        ContentTemplate="{DataTemplate local:SearchView}"
-        Route="SearchView" />
-
-    <ShellContent 
-        Title="ReadBooks"
-        ContentTemplate="{DataTemplate local:ReadBooksView}"
-        Route="ReadBooksView"/>
-
+        <ShellContent Title="Twoje książki"
+                      Icon="books.png"
+                      ContentTemplate="{DataTemplate local:ReadBooksView}"
+                      Route="ReadBooksView"
+                      Shell.TabBarIsVisible="True" />
+    </TabBar>
 </Shell>

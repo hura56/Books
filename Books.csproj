@@ -57,6 +57,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\back.png" />
+	  <None Remove="Resources\Images\books.png" />
+	  <None Remove="Resources\Images\delete.png" />
+	  <None Remove="Resources\Images\logo.png" />
+	  <None Remove="Resources\Images\search.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="8.0.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 		<PackageReference Include="DotNetEnv" Version="3.1.1" />
@@ -74,7 +82,7 @@
 	  <MauiXaml Update="Views\BookDetailsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\MainView.xaml">
+	  <MauiXaml Update="Views\HeaderView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ReadBookDetailsView.xaml">

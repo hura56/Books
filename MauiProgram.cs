@@ -23,15 +23,9 @@ namespace Books
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-            builder.Services.AddHttpClient<BooksService>(client =>
-            {
-                client.BaseAddress = new Uri("https://www.googleapis.com/books/v1/");
-            });
+            builder.Services.AddHttpClient<BooksService>();
 
             builder.Services.AddSingleton<DbService>();
-
-            builder.Services.AddTransient<MainView>();
-            builder.Services.AddTransient<MainViewModel>();
 
             builder.Services.AddTransient<SearchView>();
             builder.Services.AddTransient<SearchViewModel>();

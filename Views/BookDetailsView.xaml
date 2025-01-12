@@ -6,10 +6,20 @@
              xmlns:models="clr-namespace:Books.Models"
              x:DataType="viewModel:BookDetailsViewModel"
              Title="BookDetailsView"
-             BackgroundColor="#8B9D83">
+             BackgroundColor="#A9A9A9">
     <ScrollView>
         <VerticalStackLayout Padding="20"
                              Spacing="15">
+            <!-- Przycisk wróć -->
+            <Image Source="back.png"
+                   Aspect="AspectFill"
+                   WidthRequest="50"
+                   HeightRequest="50"
+                   HorizontalOptions="Start">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
             <!-- Miniatura okładki -->
             <Image Source="{Binding Book.Thumbnail}"
                    WidthRequest="150"
@@ -20,7 +30,8 @@
                 </Image.GestureRecognizers>
             </Image>
             <Button Text="Dodaj do przeczytanych"
-                    BackgroundColor="#6A7B76"
+                    BackgroundColor="#708090"
+                    FontAttributes="Bold"
                     TextColor="#040303"
                     BorderColor="#040303"
                     BorderWidth="2"
@@ -48,14 +59,6 @@
                    FontAttributes="Bold" />
             <Label Text="{Binding Book.Description}"
                    LineBreakMode="WordWrap" />
-
-            <!-- Przycisk wróć -->
-            <Button Text="Wróć"
-                    Command="{Binding BackCommand}"
-                    BackgroundColor="#BEB0A7"
-                    TextColor="#040303"
-                    BorderColor="#040303"
-                    BorderWidth="2" />
         </VerticalStackLayout>
     </ScrollView>
 
