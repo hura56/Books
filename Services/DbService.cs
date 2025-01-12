@@ -31,4 +31,6 @@ public class DbService
         return await _database.InsertAsync(book);
     }
     public Task<int> DeleteBookAsync(DbBook book) => _database.DeleteAsync(book);
+
+    public Task<int> UpdateBookAsync(DbBook book) => _database.UpdateAsync(book);
 }

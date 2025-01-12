@@ -29,6 +29,15 @@
                 </Image.GestureRecognizers>
             </Image>
 
+            <Label Text="{Binding DbBook.PageCount, StringFormat='Liczba stron: {0}'}"
+                   FontSize="14"/>
+
+            <Label Text="Liczba przeczytanych stron:"
+                   FontSize="14" />
+            <Entry Text="{Binding PagesRead}"
+                   Keyboard="Numeric"
+                   ReturnCommand="{Binding SavePagesCommand}" />
+
             <Label Text="{Binding DbBook.Title}"
                    FontSize="Large"
                    FontAttributes="Bold"

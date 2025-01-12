@@ -50,7 +50,8 @@ public class BooksService
                         : "Brak autora",
                     Description = item.VolumeInfo?.Description ?? "Brak opisu",
                     PublishedDate = item.VolumeInfo?.PublishedDate ?? "Data publikacji nieznana",
-                    Thumbnail = item.VolumeInfo?.ImageLinks?.Thumbnail ?? "http://katalog.tarnowiec.eu:8081/assets/okladki/isbn/brakokladki.jpg"
+                    Thumbnail = item.VolumeInfo?.ImageLinks?.Thumbnail ?? "http://katalog.tarnowiec.eu:8081/assets/okladki/isbn/brakokladki.jpg",
+                    PageCount = item.VolumeInfo?.PageCount ?? 0
                 });
             }
         }
@@ -66,5 +67,6 @@ public class BooksService
         Description = book.Description,
         PublishedDate = book.PublishedDate,
         Thumbnail = book.Thumbnail,
+        PageCount = book.PageCount,
     };
 }

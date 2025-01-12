@@ -17,4 +17,8 @@ public class DbBook
     public string Description { get; set; }
     public string PublishedDate { get; set; }
     public string Thumbnail { get; set; }
+    public int PageCount { get; set; }
+    public int PagesRead { get; set; }
+    [Ignore]
+    public double PercentageRead => PageCount > 0 ? (double)PagesRead / PageCount * 100 : 0;
 }

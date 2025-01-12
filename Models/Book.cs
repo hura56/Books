@@ -14,6 +14,7 @@ public class Book
     public string Description { get; set; }
     public string PublishedDate { get; set; }
     public string Thumbnail { get; set; }
+    public int PageCount { get; set; }
 }
 
 public class BooksResponse
@@ -34,6 +35,7 @@ public class VolumeInfo
     public string Description { get; set; }
     public string PublishedDate { get; set; }
     public ImageLinks ImageLinks { get; set; }
+    public int PageCount { get; set; }
 }
 
 public class ImageLinks

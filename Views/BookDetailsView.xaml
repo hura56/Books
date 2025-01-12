@@ -54,6 +54,11 @@
                    FontAttributes="Bold" />
             <Label Text="{Binding Book.PublishedDate}" />
 
+            <!-- Liczba stron -->
+            <Label Text="Liczba stron:"
+                   FontAttributes="Bold" />
+            <Label Text="{Binding Book.PageCount}" />
+
             <!-- Opis książki -->
             <Label Text="Opis:"
                    FontAttributes="Bold" />

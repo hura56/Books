@@ -48,6 +48,10 @@
                                            WidthRequest="75"
                                            HeightRequest="100" />
                                     <StackLayout Padding="20">
+                                        <Label Text="{Binding PercentageRead, StringFormat='Przeczytano: {0:F0}%'}"
+                                               FontSize="14"
+                                               TextColor="#1e4620"
+                                               FontAttributes="Bold"/>
 
                                         <Label Text="{Binding Authors}"
                                                FontSize="12"

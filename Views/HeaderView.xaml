@@ -8,7 +8,7 @@
         <Image Source="logo.png"
                HeightRequest="40"
                WidthRequest="40"
-               Margin="-20 0 -10 0"></Image>
+               Margin="-20, 0, -10, 0"></Image>
         <!-- Główny tytuł -->
         <Label Text="MyReads"
                FontSize="36"

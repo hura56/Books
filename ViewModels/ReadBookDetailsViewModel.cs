@@ -19,7 +19,17 @@ public partial class ReadBookDetailsViewModel : BaseViewModel
     public DbBook DbBook
     {
         get => _book;
-        set => SetProperty(ref _book, value);
+        set
+        {
+            SetProperty(ref _book, value);
+            PagesRead = _book.PagesRead;
+        }
+    }
+    private int _pagesRead;
+    public int PagesRead
+    {
+        get => _pagesRead;
+        set => SetProperty(ref _pagesRead, value);
     }
 
     public ReadBookDetailsViewModel(DbService dbService)
@@ -59,5 +69,22 @@ public partial class ReadBookDetailsViewModel : BaseViewModel
     public async Task ShowThumbnail()
     {
         Application.Current!.MainPage!.ShowPopup(new ThumbnailPopup(DbBook.Thumbnail));
+    }
+
+    [RelayCommand]
+    public async Task SavePages()
+    {
+        try
+        {
+            if (PagesRead > DbBook.PageCount) 
+                PagesRead = DbBook.PageCount;
+            DbBook.PagesRead = PagesRead;
+            await _dbService.UpdateBookAsync(DbBook);
+            await Application.Current!.MainPage!.DisplayAlert("Sukces", "Liczba przeczytanych stron została zapisana!", "OK");
+        }
+        catch (Exception ex)
+        {
+            await Application.Current!.MainPage!.DisplayAlert("Błąd", $"Wystąpił problem: {ex.Message}", "OK");
+        }
     }
 }
