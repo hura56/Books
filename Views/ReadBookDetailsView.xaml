@@ -30,13 +30,23 @@
             </Image>
 
             <Label Text="{Binding DbBook.PageCount, StringFormat='Liczba stron: {0}'}"
-                   FontSize="14"/>
+                   FontSize="14" 
+                   FontAttributes="Bold"/>
 
             <Label Text="Liczba przeczytanych stron:"
-                   FontSize="14" />
-            <Entry Text="{Binding PagesRead}"
-                   Keyboard="Numeric"
-                   ReturnCommand="{Binding SavePagesCommand}" />
+                   FontSize="14" 
+                   FontAttributes="Bold"/>
+
+            <Frame WidthRequest="80"
+                   HeightRequest="50"
+                   Padding="5, 5, 5, 5"
+                   BackgroundColor="#696969"
+                   BorderColor="#000000">
+
+                <Entry HorizontalOptions="Center"
+                       Text="{Binding PagesRead, Mode=TwoWay}"
+                       Keyboard="Numeric" />
+            </Frame>
 
             <Label Text="{Binding DbBook.Title}"
                    FontSize="Large"

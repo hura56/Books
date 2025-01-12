@@ -26,7 +26,7 @@ public class DbService
         var existingBook = await _database.Table<DbBook>().FirstOrDefaultAsync(b => b.GoogleId == book.GoogleId);
         if (existingBook != null)
         {
-            throw new InvalidOperationException("Wybrana ksiązka jest już w liście przeczytanych");
+            throw new InvalidOperationException("Wybrana ksiązka jest już w liście twoich książek.");
         }
         return await _database.InsertAsync(book);
     }

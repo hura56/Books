@@ -36,7 +36,7 @@ public partial class BookDetailsViewModel : BaseViewModel
         {
             var dbBook = BooksService.ToDbBook(book);
             await _dbService.SaveBookAsync(dbBook);
-            await Application.Current!.MainPage!.DisplayAlert("Sukces", $"Dodano książke: {book.Title} do listy przeczytanych", "OK");
+            await Application.Current!.MainPage!.DisplayAlert("Sukces", $"Dodano książke: {book.Title} do listy twoich książek", "OK");
             Back();
         }
         catch (Exception ex)

@@ -10,7 +10,7 @@
              BackgroundColor="#696969">
     <StackLayout Padding="10">
         <views:HeaderView />
-        <Label Text="{Binding ReadBooks.Count, StringFormat='Twoje przeczytane książki: {0}'}"
+        <Label Text="{Binding ReadBooks.Count, StringFormat='Twoje książki: {0}'}"
                HorizontalOptions="Center"
                FontSize="16"
                TextColor="#000000"

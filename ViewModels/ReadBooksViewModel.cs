@@ -56,7 +56,7 @@ public partial class ReadBooksViewModel : BaseViewModel
     public async Task RemoveBook(DbBook book)
     {
         bool result = await Application.Current!.MainPage!.DisplayAlert("Potwierdzenie",
-            $"Czy na pewno chcesz usunąć: {book.Title} z listy przeczytanych książek?",
+            $"Czy na pewno chcesz usunąć: {book.Title} z listy twoich książek?",
             "Tak",
             "Nie"
             );

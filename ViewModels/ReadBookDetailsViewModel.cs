@@ -29,7 +29,12 @@ public partial class ReadBookDetailsViewModel : BaseViewModel
     public int PagesRead
     {
         get => _pagesRead;
-        set => SetProperty(ref _pagesRead, value);
+        set 
+        { 
+            SetProperty(ref _pagesRead, value);
+            OnPropertyChanged(nameof(PagesRead));
+            _ = SavePages();
+        }
     }
 
     public ReadBookDetailsViewModel(DbService dbService)
@@ -47,7 +52,7 @@ public partial class ReadBookDetailsViewModel : BaseViewModel
     public async Task RemoveBook()
     {
         bool result = await Application.Current!.MainPage!.DisplayAlert("Potwierdzenie",
-            $"Czy na pewno chcesz usunąć: {DbBook.Title} z listy przeczytanych książek?",
+            $"Czy na pewno chcesz usunąć: {DbBook.Title} z listy twoich książek?",
             "Tak",
             "Nie"
             );
@@ -76,11 +81,13 @@ public partial class ReadBookDetailsViewModel : BaseViewModel
     {
         try
         {
+            if (DbBook == null || _dbService == null)
+                return;
+          
             if (PagesRead > DbBook.PageCount) 
                 PagesRead = DbBook.PageCount;
             DbBook.PagesRead = PagesRead;
             await _dbService.UpdateBookAsync(DbBook);
-            await Application.Current!.MainPage!.DisplayAlert("Sukces", "Liczba przeczytanych stron została zapisana!", "OK");
         }
         catch (Exception ex)
         {

@@ -10,17 +10,17 @@
     <ScrollView>
         <VerticalStackLayout Padding="20"
                              Spacing="15">
-            <!-- Przycisk wróć -->
+            
             <Image Source="back.png"
                    Aspect="AspectFill"
                    WidthRequest="50"
                    HeightRequest="50"
                    HorizontalOptions="Start">
                 <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding BackCommand}"/>
+                    <TapGestureRecognizer Command="{Binding BackCommand}" />
                 </Image.GestureRecognizers>
             </Image>
-            <!-- Miniatura okładki -->
+            
             <Image Source="{Binding Book.Thumbnail}"
                    WidthRequest="150"
                    HeightRequest="200"
@@ -29,7 +29,8 @@
                     <TapGestureRecognizer Command="{Binding ShowThumbnailCommand}" />
                 </Image.GestureRecognizers>
             </Image>
-            <Button Text="Dodaj do przeczytanych"
+            
+            <Button Text="Dodaj do moich książek"
                     BackgroundColor="#708090"
                     FontAttributes="Bold"
                     TextColor="#040303"
@@ -38,28 +39,23 @@
                     Command="{Binding AddBookToReadCommand}"
                     CommandParameter="{Binding Book}" />
 
-            <!-- Tytuł książki -->
             <Label Text="{Binding Book.Title}"
                    FontSize="Large"
                    FontAttributes="Bold"
                    HorizontalOptions="Center" />
 
-            <!-- Autorzy -->
             <Label Text="Autorzy:"
                    FontAttributes="Bold" />
             <Label Text="{Binding Book.Authors}" />
 
-            <!-- Data publikacji -->
             <Label Text="Data publikacji:"
                    FontAttributes="Bold" />
             <Label Text="{Binding Book.PublishedDate}" />
 
-            <!-- Liczba stron -->
             <Label Text="Liczba stron:"
                    FontAttributes="Bold" />
             <Label Text="{Binding Book.PageCount}" />
 
-            <!-- Opis książki -->
             <Label Text="Opis:"
                    FontAttributes="Bold" />
             <Label Text="{Binding Book.Description}"
