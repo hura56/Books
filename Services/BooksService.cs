@@ -26,36 +26,43 @@ public class BooksService
     public async Task<List<Book>> SearchBooksAsync(string query)
     {
         var url = $"https://www.googleapis.com/books/v1/volumes?q={query}&maxResults=40&key={_apiKey}";
-        var response = await _httpClient.GetAsync(url);
-        var jsonResponse = await response.Content.ReadAsStringAsync();
-
-        var options = new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true,
-        };
-
-        var data = JsonSerializer.Deserialize<BooksResponse>(jsonResponse, options);
-
         var books = new List<Book>();
-        if (data?.Items != null)
+        try
         {
-            foreach (var item in data.Items)
-            {
-                books.Add(new Book
-                {
-                    Id = item.Id,
-                    Title = item.VolumeInfo?.Title,
-                    Authors = item.VolumeInfo?.Authors != null
-                        ? string.Join(", ", item.VolumeInfo.Authors)
-                        : "Brak autora",
-                    Description = item.VolumeInfo?.Description ?? "Brak opisu",
-                    PublishedDate = item.VolumeInfo?.PublishedDate ?? "Data publikacji nieznana",
-                    Thumbnail = item.VolumeInfo?.ImageLinks?.Thumbnail ?? "http://katalog.tarnowiec.eu:8081/assets/okladki/isbn/brakokladki.jpg",
-                    PageCount = item.VolumeInfo?.PageCount ?? 0
-                });
-            }
-        }
+            var response = await _httpClient.GetAsync(url);
+            var jsonResponse = await response.Content.ReadAsStringAsync();
 
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+            };
+
+            var data = JsonSerializer.Deserialize<BooksResponse>(jsonResponse, options);
+
+            if (data?.Items != null)
+            {
+                foreach (var item in data.Items)
+                {
+                    books.Add(new Book
+                    {
+                        Id = item.Id,
+                        Title = item.VolumeInfo?.Title,
+                        Authors = item.VolumeInfo?.Authors != null
+                            ? string.Join(", ", item.VolumeInfo.Authors)
+                            : "Brak autora",
+                        Description = item.VolumeInfo?.Description ?? "Brak opisu",
+                        PublishedDate = item.VolumeInfo?.PublishedDate ?? "Data publikacji nieznana",
+                        Thumbnail = item.VolumeInfo?.ImageLinks?.Thumbnail ?? "http://katalog.tarnowiec.eu:8081/assets/okladki/isbn/brakokladki.jpg",
+                        PageCount = item.VolumeInfo?.PageCount ?? 0
+                    });
+                }
+            }
+            return books;
+        }
+        catch (Exception ex)
+        {
+            await Application.Current!.MainPage!.DisplayAlert("Błąd", $"Problem z pobraniem danych, sprawdź czy telefon ma dostęp do internetu, kod błędu: {ex.Message}", "OK");
+        }
         return books;
     }
 
